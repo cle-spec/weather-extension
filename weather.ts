@@ -45,6 +45,7 @@ namespace weather {
         raindrop.setVelocity(0, 50)
         raindrop.setPosition(Math.randomRange(0, screen.width), 0)
         raindrop.lifespan = 3000
+        raindrop.setFlag(SpriteFlag.RelativeToCamera, true)
     })
     }
     
@@ -68,6 +69,9 @@ namespace weather {
                 raindrop.setVelocity(0, 50)
                 raindrop.setPosition(Math.randomRange(0, screen.width), 0)
                 raindrop.lifespan = 3000
+                raindrop2.setFlag(SpriteFlag.RelativeToCamera, true)
+                raindrop.setFlag(SpriteFlag.RelativeToCamera, true)
+                raindrop.z = 5
             }
         })
     }
@@ -80,6 +84,8 @@ namespace weather {
             snowflake.setVelocity(0, 20)
             snowflake.setPosition(Math.randomRange(0, screen.width), 0)
             snowflake.lifespan = 10000
+
+            snowflake.setFlag(SpriteFlag.RelativeToCamera, true)
         })
     }
 
@@ -96,7 +102,17 @@ namespace weather {
                 gust.setVelocity(50, 0)
                 gust.setPosition(0, Math.randomRange(0, screen.height))
                 gust.lifespan = 5000
+                gust.setFlag(SpriteFlag.RelativeToCamera, true)
             }
         })
     }
+    forever(function() {
+        for (let value of sprites.allOfKind(SpriteKind.Food)) {
+            if (value.y >= 130 || value.x >= 170) {
+            sprites.destroy(value)
+        }
+    }
+    
+    
+})
 }
